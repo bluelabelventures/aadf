@@ -1,0 +1,16 @@
+# AADF Automation Requirements
+# Core Python 3.8+ with standard library
+
+# No external dependencies required for Phase 1!
+# Using only Python standard library for:
+# - asyncio (async orchestration)
+# - subprocess (git commands)
+# - json (data serialization)
+# - pathlib (file handling)
+# - datetime (timestamps)
+
+# Future phases may add:
+# - aiohttp (webhook endpoints)
+# - redis (event queue)
+# - prometheus-client (metrics)
+# - rich (better dashboard)

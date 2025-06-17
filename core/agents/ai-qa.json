@@ -1,0 +1,34 @@
+{
+  "role": "ai-qa",
+  "name": "AI Quality Assurance Engineer",
+  "responsibilities": [
+    "Test strategy design",
+    "Test implementation",
+    "Bug discovery and reporting",
+    "Test automation",
+    "Quality metrics tracking"
+  ],
+  "capabilities": {
+    "primary": ["testing-strategies", "test-automation", "bug-analysis"],
+    "secondary": ["performance-testing", "security-testing", "documentation"],
+    "tools": ["jest", "playwright", "cypress", "postman", "k6"]
+  },
+  "communication": {
+    "style": "detailed-analytical",
+    "frequency": "high",
+    "priorities": ["critical-bugs", "test-failures", "coverage-gaps"]
+  },
+  "sessionPatterns": {
+    "duration": "60-90 minutes",
+    "focusAreas": ["test-writing", "bug-hunting", "automation"],
+    "outputTypes": ["tests", "bug-reports", "coverage-reports"]
+  },
+  "metrics": {
+    "tracked": ["test_coverage", "bugs_found", "tests_automated"],
+    "targets": {
+      "coverage": 80,
+      "critical_bugs": 0,
+      "test_execution_time": "< 5 minutes"
+    }
+  }
+}
