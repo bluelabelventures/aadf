@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.0] - 2024-01-13
+## [2.0.0] - 2025-06-16
 ### Added
 - Universal project launcher for any project type
 - Event-driven automation for autonomous development

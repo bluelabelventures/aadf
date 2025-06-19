@@ -133,7 +133,7 @@ Handoff:
 - Need GET /api/user/:id endpoint
 - Response format in types/user.ts
 
-Branch: session/ai-frontend/2024-01-13-3
+Branch: session/ai-frontend/2025-06-16-3
 "
 ```
 
@@ -158,7 +158,7 @@ Each agent maintains state in `.ai/agents/[agent-name]/state.json`:
   "status": "active",
   "current_task": "user-dashboard",
   "session_number": 3,
-  "branch": "session/ai-frontend/2024-01-13-3",
+  "branch": "session/ai-frontend/2025-06-16-3",
   "blockers": [],
   "patterns_discovered": ["optimistic-ui", "skeleton-loading"]
 }
