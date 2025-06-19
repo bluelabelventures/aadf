@@ -72,7 +72,7 @@ Enable automation? Yes
 ### 2. Start Automation
 ```bash
 cd my-app
-./scripts/automation/start.sh
+./scripts/automation/start-automation.sh
 ```
 
 ### 3. Work Naturally
