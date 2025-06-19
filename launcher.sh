@@ -149,9 +149,60 @@ cd "$PROJECT_DIR"
 echo -e "${GREEN}📁 Creating AADF directories...${NC}"
 mkdir -p {.ai/{agents,communication/{inbox,outbox,archive},patterns,coordination,metrics},scripts,docs}
 
-# Create A2A v5 messaging
-echo -e "${GREEN}📬 Installing A2A v5...${NC}"
-cp "$(dirname "$0")/project-template/scripts/a2a-v5" scripts/
+# Create A2A v5 messaging script inline
+echo -e "${GREEN}📬 Creating A2A v5 messaging...${NC}"
+cat > scripts/a2a-v5 << 'EOFA2A'
+#!/bin/bash
+# A2A v5 - Agent to Agent Communication Protocol
+# Simple file-based messaging for AI agents
+
+COMM_DIR=".ai/communication"
+COMMAND=$1
+
+case $COMMAND in
+    send)
+        FROM=$2
+        TO=$3
+        TYPE=$4
+        PRIORITY=$5
+        SUBJECT=$6
+        BODY=$7
+        TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        ID=$(uuidgen 2>/dev/null || echo "${TIMESTAMP}-${RANDOM}")
+        
+        MESSAGE=$(cat <<EOF
+{
+  "id": "$ID",
+  "from": "$FROM",
+  "to": "$TO",
+  "type": "$TYPE",
+  "priority": "$PRIORITY",
+  "subject": "$SUBJECT",
+  "body": "$BODY",
+  "timestamp": "$TIMESTAMP",
+  "status": "unread"
+}
+EOF
+)
+        echo "$MESSAGE" > "$COMM_DIR/inbox/${TO}_${ID}.json"
+        echo "✉️  Message sent: $FROM → $TO"
+        ;;
+    inbox)
+        AGENT=${2:-$(basename $PWD)}
+        echo "📥 Inbox for $AGENT:"
+        ls -la $COMM_DIR/inbox/${AGENT}_*.json 2>/dev/null | wc -l | xargs echo "Messages:"
+        ;;
+    read)
+        AGENT=${2:-$(basename $PWD)}
+        for msg in $COMM_DIR/inbox/${AGENT}_*.json; do
+            [ -f "$msg" ] && cat "$msg" && echo ""
+        done
+        ;;
+    *)
+        echo "Usage: a2a-v5 [send|inbox|read] [args...]"
+        ;;
+esac
+EOFA2A
 chmod +x scripts/a2a-v5
 
 # Install automation if enabled
@@ -506,8 +557,46 @@ echo "Agent: $AGENT is ready to work!"
 EOF
 chmod +x scripts/session-manager.sh
 
-# Create metrics dashboard
-cp "$(dirname "$0")/project-template/scripts/metrics-dashboard.sh" scripts/
+# Create metrics dashboard inline
+cat > scripts/metrics-dashboard.sh << 'EOFMETRICS'
+#!/bin/bash
+# AADF Metrics Dashboard
+
+echo "📊 AADF Metrics Dashboard"
+echo "========================"
+echo ""
+
+# Git metrics
+echo "📈 Git Activity:"
+echo "- Commits today: $(git log --since=midnight --oneline 2>/dev/null | wc -l)"
+echo "- Total commits: $(git rev-list --all --count 2>/dev/null || echo 0)"
+echo "- Current branch: $(git branch --show-current 2>/dev/null || echo 'main')"
+echo ""
+
+# Agent metrics
+echo "🤖 Agent Activity:"
+for agent in .ai/agents/*; do
+    if [ -d "$agent" ]; then
+        agent_name=$(basename "$agent")
+        if [ -f "$agent/state.json" ]; then
+            sessions=$(jq -r '.total_sessions // 0' "$agent/state.json")
+            echo "- $agent_name: $sessions sessions"
+        fi
+    fi
+done
+echo ""
+
+# File metrics
+echo "📁 Project Stats:"
+echo "- Files: $(find . -type f -name "*.ts" -o -name "*.js" -o -name "*.py" 2>/dev/null | wc -l)"
+echo "- Lines of code: $(find . -type f \( -name "*.ts" -o -name "*.js" -o -name "*.py" \) -exec wc -l {} + 2>/dev/null | tail -1 | awk '{print $1}')"
+echo ""
+
+# Pattern discoveries
+echo "💡 Pattern Discoveries:"
+pattern_count=$(find .ai/patterns -name "*.json" 2>/dev/null | wc -l)
+echo "- Total patterns: $pattern_count"
+EOFMETRICS
 chmod +x scripts/metrics-dashboard.sh
 
 # Language-specific setup
