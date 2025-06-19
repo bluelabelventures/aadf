@@ -31,8 +31,8 @@ GITHUB_ORG=""
 # Step 1: Project Basics
 echo -e "\n${CYAN}Step 1: Project Basics${NC}"
 read -p "Project name: " PROJECT_NAME
-read -p "Project directory (default: ~/$PROJECT_NAME): " PROJECT_DIR
-PROJECT_DIR=${PROJECT_DIR:-~/$PROJECT_NAME}
+read -p "Project directory (default: ./$PROJECT_NAME): " PROJECT_DIR
+PROJECT_DIR=${PROJECT_DIR:-./$PROJECT_NAME}
 read -p "GitHub organization (optional): " GITHUB_ORG
 
 # Step 2: Project Type
