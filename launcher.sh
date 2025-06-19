@@ -693,5 +693,4 @@ if [[ "$ENABLE_AUTOMATION" == "Y" ]] || [[ "$ENABLE_AUTOMATION" == "y" ]]; then
 else
     echo -e "${GREEN}🚀 You're starting at 10x. Your AI team is ready!${NC}"
 fi
-EOF
 
