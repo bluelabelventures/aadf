@@ -1,3 +1,9 @@
+# ⚠️ PROJECT PAUSED - UNDER RECONSTRUCTION ⚠️
+
+**This version of AADF is deprecated. A new implementation is being developed.**
+
+---
+
 # AADF - AI Agent-Driven Framework
 ## Build Software 48x Faster with Autonomous AI Teams
 
@@ -5,6 +11,8 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Acceleration](https://img.shields.io/badge/acceleration-48x-orange.svg)](docs/METRICS.md)
 [![Stars](https://img.shields.io/github/stars/bluelabelventures/aadf?style=social)](https://github.com/bluelabelventures/aadf)
+
+**⚠️ IMPORTANT: This implementation does not deliver on its promises. The automation features are not functional. Please wait for v2.0.**
 
 **Transform how you build software.** AADF orchestrates teams of specialized AI agents that work together autonomously, achieving 48x acceleration in real-world projects.
 

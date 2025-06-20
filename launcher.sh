@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ⚠️  WARNING: AADF PROJECT PAUSED - UNDER RECONSTRUCTION ⚠️
+# This version does not include working AI automation features
+# A new implementation is being developed
+#
 # AADF Universal Project Launcher
 # Works for ANY project type with customizable agent teams
 
